@@ -14,6 +14,6 @@ class RecipeSeeder extends Seeder
      */
     public function run()
     {
-        Recipe::factory()->count(5)->create();
+//        Recipe::factory()->count(5)->create();
     }
 }
