@@ -12,24 +12,28 @@
                         <ul class="list-unstyled">
                             @foreach($recipes as $recipe)
                                 <li class="my-2">
+
                                     <div class="card">
-                                        <div class="card-header">
-                                            <a href="">{{$recipe->name}}</a>
-                                        </div>
-
                                         <div class="card-body">
-                                            <p>
-                                                {{$recipe->description}}
+
+                                            <!-- Title -->
+                                            <h5 class="card-title">
+                                                {{$recipe->name}}
+                                            </h5>
+
+                                            <!-- Content -->
+                                            <p class="card-text">
+                                                {{Str::limit($recipe->description, 150)}}
                                             </p>
 
-                                            <p>
-                                                {{$recipe->instructions}}
+                                            <!-- Link -->
+                                            <a href="" class="btn btn-primary">Read</a>
+
+                                            <!-- Author -->
+                                            <p class="float-right small">
+                                                By {{$recipe->author->name}}
                                             </p>
 
-                                        </div>
-
-                                        <div class="card-footer">
-                                            By {{$recipe->author->name}}
                                         </div>
 
                                         {{--                                        {{$recipe}}--}}
