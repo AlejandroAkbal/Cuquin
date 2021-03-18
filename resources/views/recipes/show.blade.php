@@ -30,10 +30,9 @@
                             <h5>Ingredients</h5>
                             <ul>
                                 @foreach($recipe->ingredients as $ingredient)
-                                    <li>{{$ingredient->name}}</li>
+                                    <li>{{$ingredient->pivot->quantity . 'x ' . $ingredient->name}}</li>
                                 @endforeach
                             </ul>
-
 
                             <h5>Instructions</h5>
                             <p class="card-text">
