@@ -13,7 +13,8 @@ class RecipesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:update,recipe', ['except' => ['index', 'show']]);
+        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('can:update,recipe')->only(['edit', 'update', 'destroy']);
     }
 
 
@@ -24,7 +25,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::paginate(3);
+        $recipes = Recipe::latest()->paginate(3);
 
         return View::make('recipes.index', ['recipes' => $recipes]);
     }
@@ -36,41 +37,53 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('recipes.createOrEdit');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'unique:App\Models\Recipe'],
+            'description' => ['required', 'min:50', 'max:255'],
+            'instructions' => ['required', 'min:100', 'max:510'],
+        ]);
 
+        $recipe = Recipe::make($request->all());
+        $recipe->author_id = Auth::user()->id;
+
+        $recipe->save();
+
+        Session::flash('message', 'Successfully created!');
+
+        return Redirect::to('recipes');
     }
 
     /**
      * Display the specified resource.
      *
      * @param \App\Models\Recipe $recipe
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(Recipe $recipe)
     {
-        //
+        return View::make('recipes.show', ['recipe' => $recipe]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Recipe $recipe
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Recipe $recipe)
     {
-        //
+        return View::make('recipes.createOrEdit', ['recipe' => $recipe]);
     }
 
     /**
@@ -78,12 +91,21 @@ class RecipesController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Recipe $recipe
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'description' => ['required', 'min:50', 'max:255'],
+            'instructions' => ['required', 'min:100', 'max:510'],
+        ]);
 
+        $recipe->update($request->all());
+
+        Session::flash('message', 'Successfully updated!');
+
+        return Redirect::to('recipes');
     }
 
     /**
@@ -91,7 +113,6 @@ class RecipesController extends Controller
      *
      * @param \App\Models\Recipe $recipe
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
      */
     public function destroy(Recipe $recipe)
