@@ -44,6 +44,11 @@
                             @endforeach
 
                         </ul>
+
+                        <!-- Pagination -->
+                        <div class="d-flex justify-content-center">
+                            {{$recipes->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
