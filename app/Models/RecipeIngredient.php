@@ -19,8 +19,13 @@ class RecipeIngredient extends Model
         'ingredient_id',
     ];
 
-    public function recipes()
+    public function recipe()
     {
-        return $this->belongsToMany(Recipe::class);
+        return $this->belongsTo(Recipe::class);
+    }
+
+    public function ingredient()
+    {
+        return $this->hasOne(Ingredient::class);
     }
 }
