@@ -79,10 +79,14 @@ class RecipesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Recipe $recipe
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Recipe $recipe)
     {
-        //
+        $recipe->delete();
+
+        Session::flash('message', 'Successfully deleted!');
+
+        return Redirect::to('recipes');
     }
 }
