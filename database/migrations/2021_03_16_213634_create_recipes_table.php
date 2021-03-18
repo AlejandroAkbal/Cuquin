@@ -15,11 +15,14 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
             $table->text('description');
             $table->text('instructions');
-            $table->unsignedBigInteger('author_id');
+
             $table->timestamps();
+
+            $table->unsignedBigInteger('author_id');
 
             $table->foreign('author_id')->references('id')->on('users')->cascadeOnDelete();
         });
