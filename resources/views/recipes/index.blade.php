@@ -26,8 +26,26 @@
                                                 {{Str::limit($recipe->description, 150)}}
                                             </p>
 
-                                            <!-- Link -->
-                                            <a href="" class="btn btn-primary">Read</a>
+                                            <!-- actions -->
+                                            <div>
+                                                <a href="{{ route('recipes.show', $recipe->id) }}"
+                                                   class="btn btn-primary">
+                                                    Read
+                                                </a>
+
+                                                <a href="{{ route('recipes.edit', $recipe->id) }}"
+                                                   class="btn btn-secondary">
+                                                    Edit
+                                                </a>
+
+                                                <form class="d-inline"
+                                                      action="{{route('recipes.destroy', $recipe->id)}}"
+                                                      method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                                </form>
+                                            </div>
 
                                             <!-- Author -->
                                             <p class="float-right small">
