@@ -8,7 +8,14 @@
                 @include('shared.messages')
 
                 <div class="card">
-                    <div class="card-header">Recipes</div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        Recipes
+
+                        <a href="{{ route('recipes.create') }}"
+                           class="btn btn-primary">
+                            Create
+                        </a>
+                    </div>
 
                     <div class="card-body">
 
