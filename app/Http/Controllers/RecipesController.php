@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\View;
 
 class RecipesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:update,recipe', ['except' => ['index', 'show']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +49,6 @@ class RecipesController extends Controller
     {
         //
 
-        $this->authorize('update', $recipe);
     }
 
     /**
@@ -79,7 +84,6 @@ class RecipesController extends Controller
     {
         //
 
-        $this->authorize('update', $recipe);
     }
 
     /**
@@ -92,8 +96,6 @@ class RecipesController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
-        $this->authorize('update', $recipe);
-
         $recipe->delete();
 
         Session::flash('message', 'Successfully deleted!');
