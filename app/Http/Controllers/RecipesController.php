@@ -42,6 +42,8 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->authorize('update', $recipe);
     }
 
     /**
@@ -76,6 +78,8 @@ class RecipesController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         //
+
+        $this->authorize('update', $recipe);
     }
 
     /**
@@ -83,9 +87,13 @@ class RecipesController extends Controller
      *
      * @param \App\Models\Recipe $recipe
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
     public function destroy(Recipe $recipe)
     {
+        $this->authorize('update', $recipe);
+
         $recipe->delete();
 
         Session::flash('message', 'Successfully deleted!');
