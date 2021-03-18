@@ -22,13 +22,13 @@ class RecipeIngredient extends Model
         'ingredient_id',
     ];
 
-    public function recipe()
-    {
-        return $this->belongsTo(Recipe::class);
-    }
-
-    public function ingredient()
-    {
-        return $this->hasOne(Ingredient::class);
-    }
+//    public function recipe()
+//    {
+//        return $this->belongsTo(Recipe::class);
+//    }
+//
+//    public function ingredient()
+//    {
+//        return $this->hasOne(Ingredient::class);
+//    }
 }

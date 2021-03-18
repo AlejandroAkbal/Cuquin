@@ -31,6 +31,7 @@ class Recipe extends Model
 
     public function ingredients()
     {
-        return $this->hasMany(RecipeIngredient::class);
+        // Uses table `recipe_ingredients` to pivot and get a `ingredient`
+        return $this->belongsToMany(Ingredient::class, 'recipe_ingredients', 'recipe_id', 'ingredient_id');
     }
 }
