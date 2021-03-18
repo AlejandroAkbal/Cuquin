@@ -21,13 +21,25 @@
                         </p>
 
                         <!-- Content -->
-                        <p class="card-text">
-                            {{$recipe->description}}
-                        </p>
+                        <div>
+                            <h5>Description</h5>
+                            <p class="card-text">
+                                {{$recipe->description}}
+                            </p>
 
-                        <p class="card-text">
-                            {{$recipe->instructions}}
-                        </p>
+                            <h5>Ingredients</h5>
+                            <ul>
+                                @foreach($recipe->ingredients as $ingredient)
+                                    <li>{{$ingredient->name}}</li>
+                                @endforeach
+                            </ul>
+
+
+                            <h5>Instructions</h5>
+                            <p class="card-text">
+                                {{$recipe->instructions}}
+                            </p>
+                        </div>
 
 
                         <div>
