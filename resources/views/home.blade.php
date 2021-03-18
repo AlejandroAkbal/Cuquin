@@ -15,14 +15,24 @@
                         @endif
 
                         <ul class="list-group">
+
                             <li class="list-group-item list-group-item-action">
                                 <a href="{{route('recipes.index')}}">
                                     View recipes
                                 </a>
                             </li>
-                            <li class="list-group-item list-group-item-action"><a href="">Create recipe</a></li>
-                            <li class="list-group-item list-group-item-action"><a href="">View ingredients</a></li>
-                            <li class="list-group-item list-group-item-action"><a href="">Create ingredients</a></li>
+
+                            <li class="list-group-item list-group-item-action">
+                                <a href="{{route('recipes.create')}}">Create recipe</a>
+                            </li>
+
+                            <li class="list-group-item list-group-item-action">
+                                <a href="">View ingredients</a>
+                            </li>
+
+                            <li class="list-group-item list-group-item-action">
+                                <a href="">Create ingredients</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
