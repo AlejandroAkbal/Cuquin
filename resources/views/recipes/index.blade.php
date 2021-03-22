@@ -20,7 +20,7 @@
                     <div class="card-body">
 
                         <ul class="list-unstyled">
-                            @foreach($recipes as $recipe)
+                            @forelse($recipes as $recipe)
                                 <li class="my-2">
 
                                     <div class="card">
@@ -59,6 +59,9 @@
 
                                 </li>
                             @endforeach
+                            @empty
+                                <li class="my-2">There are no recipes. Create one?</li>
+                            @endforelse
 
                         </ul>
 
