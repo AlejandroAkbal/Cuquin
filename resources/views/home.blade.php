@@ -4,28 +4,29 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
 
-                        <ul class="list-group">
+                        <div class="list-group">
 
-                            <li class="list-group-item list-group-item-action">
-                                <a href="{{route('recipes.index')}}">
-                                    Recipes
-                                </a>
-                            </li>
+                            <a href="{{route('recipes.index')}}" class="list-group-item list-group-item-action">
+                                Recipes
+                            </a>
 
-                            <li class="list-group-item list-group-item-action">
-                                <a href="">Ingredients</a>
-                            </li>
-                        </ul>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                Ingredients
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div>
