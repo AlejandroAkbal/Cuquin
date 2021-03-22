@@ -6,7 +6,10 @@
             <div class="col-md-8">
 
                 <div class="card">
-                    <div class="card-header">Recipe</div>
+                    <div class="card-header">View recipe</div>
+
+                    <img class="card-img-top" src="https://via.placeholder.com/150" alt="Recipe image"
+                         style="max-height: 45vh">
 
                     <div class="card-body">
 
@@ -16,30 +19,30 @@
                         </h4>
 
                         <!-- Author -->
-                        <p class="text-muted small">
+                        <h5 class="card-subtitle mb-2 text-muted">
                             By {{$recipe->author->name}}
+                        </h5>
+
+                        <h5>Description</h5>
+                        <p class="card-text">
+                            {{$recipe->description}}
                         </p>
 
-                        <!-- Content -->
-                        <div>
-                            <h5>Description</h5>
-                            <p class="card-text">
-                                {{$recipe->description}}
-                            </p>
+                        <h5>Ingredients</h5>
+                        <ul class="list-group">
+                            @forelse($recipe->ingredients as $ingredient)
+                                <li class="list-group-item">{{$ingredient->pivot->quantity . 'x ' . $ingredient->name}}</li>
 
-                            <h5>Ingredients</h5>
-                            <ul>
-                                @foreach($recipe->ingredients as $ingredient)
-                                    <li>{{$ingredient->pivot->quantity . 'x ' . $ingredient->name}}</li>
-                                @endforeach
-                            </ul>
+                            @empty
+                                <p class="text-muted">No ingredients available.</p>
 
-                            <h5>Instructions</h5>
-                            <p class="card-text">
-                                {{$recipe->instructions}}
-                            </p>
-                        </div>
+                            @endforelse
+                        </ul>
 
+                        <h5>Instructions</h5>
+                        <p class="card-text">
+                            {{$recipe->instructions }}
+                        </p>
 
                         <div>
                             @include('recipes.partials.edit-actions')
