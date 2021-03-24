@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class RecipeSeeder extends Seeder
@@ -14,6 +15,10 @@ class RecipeSeeder extends Seeder
      */
     public function run()
     {
-//        Recipe::factory()->count(5)->create();
+        $user = User::whereEmail('test@example.com')->first();
+
+        Recipe::factory()->create(['user_id' => $user->id]);
+
+        Recipe::factory()->count(4)->create();
     }
 }
