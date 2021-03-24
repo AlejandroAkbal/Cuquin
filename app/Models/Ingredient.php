@@ -27,9 +27,9 @@ class Ingredient extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-//    public function recipes()
-//    {
-//        // Uses table `recipe_ingredients` to pivot and get a `recipe`
-//        return $this->belongsToMany(Recipe::class, 'recipe_ingredients', 'ingredient_id', 'recipe_id');
-//    }
+    public function recipes()
+    {
+        // Uses table `recipe_ingredients` to pivot and get a `recipe`
+        return $this->belongsToMany(Recipe::class, 'recipe_ingredients', 'ingredient_id', 'recipe_id');
+    }
 }
