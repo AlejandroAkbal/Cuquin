@@ -23,8 +23,9 @@ class IngredientFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word()
             'user_id' => User::factory(),
+
+            'name' => $this->faker->unique()->word
         ];
     }
 }

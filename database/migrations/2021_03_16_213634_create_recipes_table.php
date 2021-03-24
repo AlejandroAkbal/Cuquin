@@ -16,11 +16,11 @@ class CreateRecipesTable extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
             // Field constraints
             $table->unsignedBigInteger('user_id');
 
             // Values
+            $table->string('name')->unique();
             $table->text('description');
             $table->text('instructions');
 

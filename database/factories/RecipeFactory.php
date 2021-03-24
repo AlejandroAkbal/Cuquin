@@ -23,11 +23,11 @@ class RecipeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word(),
-            'description' => $this->faker->text(),
-            'instructions' => $this->faker->text(),
-            'author_id' => User::factory()
             'user_id' => User::factory(),
+
+            'name' => $this->faker->unique()->word,
+            'description' => $this->faker->text,
+            'instructions' => $this->faker->text,
         ];
     }
 }
