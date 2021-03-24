@@ -23,3 +23,4 @@ Route::get('/', function () {
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('recipes', \App\Http\Controllers\RecipesController::class);
+Route::resource('ingredients', \App\Http\Controllers\IngredientController::class);
