@@ -13,8 +13,8 @@ class RecipePolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Recipe $recipe
+     * @param User $user
+     * @param Recipe $recipe
      * @return mixed
      */
     public function update(User $user, Recipe $recipe)
