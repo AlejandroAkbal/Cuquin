@@ -16,7 +16,7 @@
 
                     <div class="card-body">
 
-                        <div class="list-group">
+                        <div class="list-group list-group-flush">
 
                             <a href="{{route('recipes.index')}}" class="list-group-item list-group-item-action">
                                 Recipes
