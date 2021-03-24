@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\RecipeIngredient;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RecipeIngredientFactory extends Factory
@@ -24,6 +25,8 @@ class RecipeIngredientFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => User::factory(),
+
             'recipe_id' => Recipe::factory(),
             'ingredient_id' => Ingredient::factory(),
         ];

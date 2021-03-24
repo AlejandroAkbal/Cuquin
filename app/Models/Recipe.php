@@ -21,15 +21,15 @@ class Recipe extends Model
         'name',
         'description',
         'instructions',
-        'author_id',
+        'user_id',
     ];
 
     public function author()
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function ingredients()
+    public function recipe_ingredients()
     {
         // Uses table `recipe_ingredients` to pivot and get a `ingredient`
         return $this->belongsToMany(Ingredient::class, 'recipe_ingredients', 'recipe_id', 'ingredient_id')->withPivot('quantity');

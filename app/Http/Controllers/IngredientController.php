@@ -54,7 +54,7 @@ class IngredientController extends Controller
         ]);
 
         $ingredient = Ingredient::make($request->all());
-        $ingredient->author_id = Auth::user()->id;
+        $ingredient->user_id = Auth::user()->id;
 
         $ingredient->save();
 

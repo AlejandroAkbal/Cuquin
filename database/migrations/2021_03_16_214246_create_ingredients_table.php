@@ -16,9 +16,17 @@ class CreateIngredientsTable extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
 
+            // Field constraints
+            $table->unsignedBigInteger('user_id');
+
+            // Values
             $table->string('name')->unique();
 
+            // Defaults
             $table->timestamps();
+
+            // Constraints
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

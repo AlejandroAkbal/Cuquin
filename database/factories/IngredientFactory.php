@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Ingredient;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IngredientFactory extends Factory
@@ -23,6 +24,7 @@ class IngredientFactory extends Factory
     {
         return [
             'name' => $this->faker->word()
+            'user_id' => User::factory(),
         ];
     }
 }

@@ -17,14 +17,18 @@ class CreateRecipesTable extends Migration
             $table->id();
 
             $table->string('name');
+            // Field constraints
+            $table->unsignedBigInteger('user_id');
+
+            // Values
             $table->text('description');
             $table->text('instructions');
 
+            // Defaults
             $table->timestamps();
 
-            $table->unsignedBigInteger('author_id');
-
-            $table->foreign('author_id')->references('id')->on('users')->cascadeOnDelete();
+            // Constraints
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

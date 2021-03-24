@@ -54,7 +54,7 @@ class RecipesController extends Controller
         ]);
 
         $recipe = Recipe::make($request->all());
-        $recipe->author_id = Auth::user()->id;
+        $recipe->user_id = Auth::user()->id;
 
         $recipe->save();
 
