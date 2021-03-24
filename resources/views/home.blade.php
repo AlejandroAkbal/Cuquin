@@ -22,7 +22,7 @@
                                 Recipes
                             </a>
 
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="{{route('ingredients.index')}}" class="list-group-item list-group-item-action">
                                 Ingredients
                             </a>
 
