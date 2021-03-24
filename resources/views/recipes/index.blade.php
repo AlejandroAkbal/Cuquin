@@ -58,7 +58,7 @@
                                     </div>
 
                                 </li>
-                            @endforeach
+
                             @empty
                                 <li class="my-2">There are no recipes. Create one?</li>
                             @endforelse
