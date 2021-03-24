@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\View;
 
 class IngredientController extends Controller
 {
+    private $validationRules = [
+        'name' => ['required', 'min:2', 'max:50', 'unique:App\Models\Ingredient']
+    ];
+
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
@@ -47,11 +51,7 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'unique:App\Models\Ingredient'],
-            'description' => ['required', 'min:50', 'max:255'],
-            'instructions' => ['required', 'min:100', 'max:510'],
-        ]);
+        $request->validate($this->validationRules);
 
         $ingredient = Ingredient::make($request->all());
         $ingredient->user_id = Auth::user()->id;
@@ -94,11 +94,7 @@ class IngredientController extends Controller
      */
     public function update(Request $request, Ingredient $ingredient)
     {
-        $request->validate([
-            'name' => ['required'],
-            'description' => ['required', 'min:50', 'max:255'],
-            'instructions' => ['required', 'min:100', 'max:510'],
-        ]);
+        $request->validate($this->validationRules);
 
         $ingredient->update($request->all());
 
