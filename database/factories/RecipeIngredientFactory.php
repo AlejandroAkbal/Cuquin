@@ -25,10 +25,10 @@ class RecipeIngredientFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::all()->random()->id,
 
-            'recipe_id' => Recipe::factory(),
-            'ingredient_id' => Ingredient::factory(),
+            'recipe_id' => Recipe::all()->random()->id,
+            'ingredient_id' => Ingredient::all()->random()->id,
         ];
     }
 }

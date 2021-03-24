@@ -23,7 +23,7 @@ class RecipeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::all()->random()->id,
 
             'name' => $this->faker->unique()->word,
             'description' => $this->faker->text,
