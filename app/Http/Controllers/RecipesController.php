@@ -24,7 +24,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::latest()->paginate(3);
+        $recipes = Recipe::orderBy('id', 'DESC')->paginate(5);
 
         return View::make('recipes.index', ['recipes' => $recipes]);
     }

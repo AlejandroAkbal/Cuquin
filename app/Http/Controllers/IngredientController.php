@@ -24,7 +24,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::latest()->paginate(3);
+        $ingredients = Ingredient::orderBy('id', 'DESC')->paginate(5);
 
         return View::make('ingredients.index', ['ingredients' => $ingredients]);
     }
