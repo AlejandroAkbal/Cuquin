@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
-class RecipesController extends Controller
+class IngredientController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('can:update,recipe')->only(['edit', 'update', 'destroy']);
+        $this->middleware('can:update,ingredient')->only(['edit', 'update', 'destroy']);
     }
 
     /**
@@ -24,9 +24,9 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::latest()->paginate(3);
+        $ingredients = Ingredient::latest()->paginate(3);
 
-        return View::make('recipes.index', ['recipes' => $recipes]);
+        return View::make('ingredients.index', ['ingredients' => $ingredients]);
     }
 
     /**
@@ -36,7 +36,7 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        return View::make('recipes.createOrEdit');
+        return View::make('ingredients.createOrEdit');
     }
 
     /**
@@ -48,51 +48,51 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'unique:App\Models\Recipe'],
+            'name' => ['required', 'unique:App\Models\Ingredient'],
             'description' => ['required', 'min:50', 'max:255'],
             'instructions' => ['required', 'min:100', 'max:510'],
         ]);
 
-        $recipe = Recipe::make($request->all());
-        $recipe->author_id = Auth::user()->id;
+        $ingredient = Ingredient::make($request->all());
+        $ingredient->author_id = Auth::user()->id;
 
-        $recipe->save();
+        $ingredient->save();
 
         Session::flash('message', 'Successfully created!');
 
-        return Redirect::to('recipes');
+        return Redirect::to('ingredients');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Recipe $recipe
+     * @param \App\Models\Ingredient $ingredient
      * @return \Illuminate\Contracts\View\View
      */
-    public function show(Recipe $recipe)
+    public function show(Ingredient $ingredient)
     {
-        return View::make('recipes.show', ['recipe' => $recipe]);
+        return View::make('ingredients.show', ['ingredient' => $ingredient]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Recipe $recipe
+     * @param \App\Models\Ingredient $ingredient
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(Recipe $recipe)
+    public function edit(Ingredient $ingredient)
     {
-        return View::make('recipes.createOrEdit', ['recipe' => $recipe]);
+        return View::make('ingredients.createOrEdit', ['ingredient' => $ingredient]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Recipe $recipe
+     * @param \App\Models\Ingredient $ingredient
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(Request $request, Ingredient $ingredient)
     {
         $request->validate([
             'name' => ['required'],
@@ -100,26 +100,26 @@ class RecipesController extends Controller
             'instructions' => ['required', 'min:100', 'max:510'],
         ]);
 
-        $recipe->update($request->all());
+        $ingredient->update($request->all());
 
         Session::flash('message', 'Successfully updated!');
 
-        return Redirect::to('recipes');
+        return Redirect::to('ingredients');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Recipe $recipe
+     * @param \App\Models\Ingredient $ingredient
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Recipe $recipe)
+    public function destroy(Ingredient $ingredient)
     {
-        $recipe->delete();
+        $ingredient->delete();
 
         Session::flash('message', 'Successfully deleted!');
 
-        return Redirect::to('recipes');
+        return Redirect::to('ingredients');
     }
 }
