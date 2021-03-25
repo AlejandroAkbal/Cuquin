@@ -17,8 +17,6 @@ class CreateRecipeIngredientsTable extends Migration
             $table->primary(['recipe_id', 'ingredient_id']);
 
             // Field constraints
-            $table->unsignedBigInteger('user_id');
-
             $table->unsignedBigInteger('recipe_id');
             $table->unsignedBigInteger('ingredient_id');
 
@@ -29,8 +27,6 @@ class CreateRecipeIngredientsTable extends Migration
             $table->timestamps();
 
             // Constraints
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-
             $table->foreign('recipe_id')->references('id')->on('recipes')->cascadeOnDelete();
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->cascadeOnDelete();
         });

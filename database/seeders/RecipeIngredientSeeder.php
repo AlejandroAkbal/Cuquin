@@ -17,8 +17,6 @@ class RecipeIngredientSeeder extends Seeder
     {
         $user = User::whereEmail('test@example.com')->first();
 
-        RecipeIngredient::factory()->create(['user_id' => $user->id]);
-
-        RecipeIngredient::factory()->count(4)->create();
+        RecipeIngredient::factory()->count(5)->create();
     }
 }
