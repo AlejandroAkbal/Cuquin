@@ -29,7 +29,7 @@ class Recipe extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function recipe_ingredients()
+    public function ingredients()
     {
         // Uses table `recipe_ingredients` to pivot and get a `ingredient`
         return $this->belongsToMany(Ingredient::class, 'recipe_ingredients', 'recipe_id', 'ingredient_id')->withPivot('quantity');

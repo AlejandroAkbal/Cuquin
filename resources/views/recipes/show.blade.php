@@ -30,7 +30,7 @@
 
                         <h5>Ingredients</h5>
                         <ul class="list-group">
-                            @forelse($recipe->recipe_ingredients as $ingredient)
+                            @forelse($recipe->ingredients as $ingredient)
                                 <li class="list-group-item">{{$ingredient->pivot->quantity . 'x ' . $ingredient->name}}</li>
 
                             @empty
