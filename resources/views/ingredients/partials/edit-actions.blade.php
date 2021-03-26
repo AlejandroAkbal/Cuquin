@@ -1,12 +1,12 @@
 <!-- actions -->
 @can('update', $ingredient)
-    <a href="{{ route('ingredients.edit', $ingredient->id) }}"
+    <a href="{{ route('ingredients.edit', $ingredient) }}"
        class="btn btn-secondary">
         Edit
     </a>
 
     <form class="d-inline"
-          action="{{route('ingredients.destroy', $ingredient->id)}}"
+          action="{{route('ingredients.destroy', $ingredient)}}"
           method="POST">
         @csrf
         @method('DELETE')

@@ -38,7 +38,7 @@
 
                                             <!-- actions -->
                                             <div>
-                                                <a href="{{ route('ingredients.show', $ingredient->id) }}"
+                                                <a href="{{ route('ingredients.show', $ingredient) }}"
                                                    class="btn btn-primary">
                                                     View
                                                 </a>
