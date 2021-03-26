@@ -50,6 +50,30 @@
                                           required>{{old('instructions', $recipe->instructions ?? null)}}</textarea>
                             </div>
 
+                            <div class="form-group">
+                                <label for="ingredients">Ingredients</label>
+                                <select multiple class="form-control" id="ingredients" name="ingredients[]" required>
+
+                                    @foreach($ingredients as $ingredient)
+
+                                        @if($isEditing)
+                                            <option
+                                                {{-- Compare recipe ingredients with all ingredients --}}
+                                                value="{{$ingredient->id}}" {{ $recipe->ingredients->contains('id', $ingredient->id) ? "selected" : ""}}>
+                                                {{$ingredient->name}}
+                                            </option>
+
+                                        @else
+                                            <option value="{{$ingredient->id}}">
+                                                {{$ingredient->name}}
+                                            </option>
+
+                                        @endif
+                                    @endforeach
+
+                                </select>
+                            </div>
+
                             <button type="submit"
                                     class="btn btn-primary">{{isset($recipe) ? 'Update' : 'Create'}}</button>
 

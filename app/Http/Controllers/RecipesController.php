@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -36,6 +38,8 @@ class RecipesController extends Controller
      */
     public function create()
     {
+        $ingredients = Ingredient::all();
+
         return View::make('recipes.createOrEdit', ['isEditing' => false, 'ingredients' => $ingredients]);
     }
 
@@ -51,12 +55,17 @@ class RecipesController extends Controller
             'name' => ['required', 'unique:App\Models\Recipe'],
             'description' => ['required', 'min:50', 'max:255'],
             'instructions' => ['required', 'min:100', 'max:510'],
+            'ingredients' => ['required'],
         ]);
 
-        $recipe = Recipe::make($request->all());
-        $recipe->user_id = Auth::user()->id;
+        DB::transaction(function () use ($request) {
+            $recipe = Recipe::make($request->all());
+            $recipe->user_id = Auth::user()->id;
+            $recipe->save();
 
-        $recipe->save();
+            $recipe->ingredients()->sync($request->input('ingredients'));
+        });
+
 
         Session::flash('message', 'Successfully created!');
 
@@ -82,6 +91,8 @@ class RecipesController extends Controller
      */
     public function edit(Recipe $recipe)
     {
+        $ingredients = Ingredient::all();
+
         return View::make('recipes.createOrEdit', ['isEditing' => true, 'recipe' => $recipe, 'ingredients' => $ingredients]);
     }
 
@@ -98,9 +109,13 @@ class RecipesController extends Controller
             'name' => ['required'],
             'description' => ['required', 'min:50', 'max:255'],
             'instructions' => ['required', 'min:100', 'max:510'],
+            'ingredients' => ['required'],
         ]);
 
-        $recipe->update($request->all());
+        DB::transaction(function () use ($recipe, $request) {
+            $recipe->update($request->all());
+            $recipe->ingredients()->sync($request->input('ingredients'));
+        });
 
         Session::flash('message', 'Successfully updated!');
 
