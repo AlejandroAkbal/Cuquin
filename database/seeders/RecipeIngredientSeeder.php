@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\RecipeIngredient;
-use App\Models\User;
+use App\Models\Ingredient;
+use App\Models\Recipe;
 use Illuminate\Database\Seeder;
 
 class RecipeIngredientSeeder extends Seeder
@@ -15,8 +15,15 @@ class RecipeIngredientSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::whereEmail('test@example.com')->first();
+        $recipes = Recipe::all();
+        $ingredients = Ingredient::all();
 
-        RecipeIngredient::factory()->count(5)->create();
+
+        foreach (range(1, 5) as $number) {
+            $recipe = $recipes->random();
+            $ingredient = $ingredients->random();
+
+            $recipe->ingredients()->attach($ingredient);
+        }
     }
 }
