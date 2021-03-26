@@ -59,12 +59,14 @@
                                         @if($isEditing)
                                             <option
                                                 {{-- Compare recipe ingredients with all ingredients --}}
-                                                value="{{$ingredient->id}}" {{ $recipe->ingredients->contains('id', $ingredient->id) ? "selected" : ""}}>
+                                                {{-- TODO: add old value --}}
+                                                value="{{$ingredient->id}}" {{$recipe->ingredients->contains('id', $ingredient->id) ? "selected" : ""}}>
                                                 {{$ingredient->name}}
                                             </option>
 
                                         @else
-                                            <option value="{{$ingredient->id}}">
+                                            <option
+                                                value="{{$ingredient->id}}" {{in_array($ingredient->id, old("ingredients") ?: []) ? "selected": ""}}>
                                                 {{$ingredient->name}}
                                             </option>
 
