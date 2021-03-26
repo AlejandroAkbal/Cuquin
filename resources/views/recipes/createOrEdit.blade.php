@@ -19,7 +19,7 @@
 
                 <div class="card">
 
-                    <div class="card-header">{{isset($recipe) ? 'Update' : 'Create'}} recipe</div>
+                    <div class="card-header">{{$isEditing ? 'Update' : 'Create'}} recipe</div>
 
                     <div class="card-body">
 
@@ -27,7 +27,7 @@
                             action="{{isset($recipe) ? route('recipes.update', $recipe->id) : route('recipes.store')}}"
                             method="POST">
                             @csrf
-                            @if(isset($recipe))
+                            @if($isEditing)
                                 @method('PUT')
                             @endif
 

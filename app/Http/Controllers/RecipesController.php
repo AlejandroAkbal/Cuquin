@@ -32,11 +32,11 @@ class RecipesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
-        return View::make('recipes.createOrEdit');
+        return View::make('recipes.createOrEdit', ['isEditing' => false, 'ingredients' => $ingredients]);
     }
 
     /**
@@ -82,7 +82,7 @@ class RecipesController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        return View::make('recipes.createOrEdit', ['recipe' => $recipe]);
+        return View::make('recipes.createOrEdit', ['isEditing' => true, 'recipe' => $recipe, 'ingredients' => $ingredients]);
     }
 
     /**
