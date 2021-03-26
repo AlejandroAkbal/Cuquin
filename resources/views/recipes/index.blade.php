@@ -46,11 +46,6 @@
                                                 @include('recipes.partials.edit-actions')
                                             </div>
 
-                                            <!-- Author -->
-                                            <p class="float-right text-muted small">
-                                                By {{$recipe->author->name}}
-                                            </p>
-
                                         </div>
 
                                         {{--                                        {{$recipe}}--}}
