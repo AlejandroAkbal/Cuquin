@@ -19,15 +19,15 @@
 
                 <div class="card">
 
-                    <div class="card-header">{{isset($ingredient) ? 'Update' : 'Create'}} ingredient</div>
+                    <div class="card-header">{{$isEditing ? 'Update' : 'Create'}} ingredient</div>
 
                     <div class="card-body">
 
                         <form
-                            action="{{isset($ingredient) ? route('ingredients.update', $ingredient->id) : route('ingredients.store')}}"
+                            action="{{$isEditing ? route('ingredients.update', $ingredient) : route('ingredients.store')}}"
                             method="POST">
                             @csrf
-                            @if(isset($ingredient))
+                            @if($isEditing)
                                 @method('PUT')
                             @endif
 
@@ -39,7 +39,7 @@
                             </div>
 
                             <button type="submit"
-                                    class="btn btn-primary">{{isset($ingredient) ? 'Update' : 'Create'}}</button>
+                                    class="btn btn-primary">{{$isEditing ? 'Update' : 'Create'}}</button>
 
                         </form>
                     </div>

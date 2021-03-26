@@ -24,7 +24,7 @@
                     <div class="card-body">
 
                         <form
-                            action="{{$isEditing ? route('recipes.update', $recipe->id) : route('recipes.store')}}"
+                            action="{{$isEditing ? route('recipes.update', $recipe) : route('recipes.store')}}"
                             method="POST">
                             @csrf
                             @if($isEditing)
