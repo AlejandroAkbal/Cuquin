@@ -15,13 +15,11 @@ class RecipeIngredientSeeder extends Seeder
      */
     public function run()
     {
-        $recipes = Recipe::all();
-        $ingredients = Ingredient::all();
+        $recipes = Recipe::all()->random(5);
+        $ingredients = Ingredient::all()->random(5);
 
-
-        foreach (range(1, 5) as $number) {
+        foreach ($ingredients as $ingredient) {
             $recipe = $recipes->random();
-            $ingredient = $ingredients->random();
 
             $recipe->ingredients()->attach($ingredient);
         }
