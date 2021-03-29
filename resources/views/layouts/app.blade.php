@@ -42,6 +42,18 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
 
+                    <li class="nav-item {{Request::routeIs('home') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    </li>
+
+                    <li class="nav-item {{Request::routeIs('recipes.*') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{ route('recipes.index') }}">Recipes</a>
+                    </li>
+
+                    <li class="nav-item {{Request::routeIs('ingredients.*') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{ route('ingredients.index') }}">Ingredients</a>
+                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
