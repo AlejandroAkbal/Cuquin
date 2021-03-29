@@ -56,56 +56,59 @@
 
                 </ul>
 
-                <!-- Search form -->
-                <div class="form-inline">
-                    <form action="{{route('recipes.index')}}" class="input-group">
-                        <input id="search" class="form-control" type="search" name="search" placeholder="Search"
-                               aria-label="Search">
+                <div class="d-flex flex-column flex-md-row ml-auto">
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav mr-md-2">
 
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
 
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
 
-                    <!-- Authentication Links -->
-                    @guest
-                        @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+
+
+                    <!-- Search form -->
+                    <div class="form-inline mt-2 mt-md-0">
+                        <form action="{{route('recipes.index')}}" class="input-group">
+                            <input id="search" class="form-control" type="search" name="search" placeholder="Search"
+                                   aria-label="Search">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
                             </div>
-                        </li>
-                    @endguest
-                </ul>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
