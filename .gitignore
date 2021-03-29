@@ -12,6 +12,12 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+# Laravel mix
+/public/js
+/public/css
+/public/build
+/public/mix-manifest.json
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/laravel,composer,node,phpstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=laravel,composer,node,phpstorm
