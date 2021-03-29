@@ -56,6 +56,18 @@
 
                 </ul>
 
+                <!-- Search form -->
+                <div class="form-inline">
+                    <form action="{{route('recipes.index')}}" class="input-group">
+                        <input id="search" class="form-control" type="search" name="search" placeholder="Search"
+                               aria-label="Search">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -72,6 +84,7 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
+
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
