@@ -2,56 +2,54 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
 
-                <div class="card">
-                    <div class="card-header">View recipe</div>
+        <div class="card">
 
-                    <img class="card-img-top" src="https://via.placeholder.com/150" alt="Recipe image"
-                         style="max-height: 45vh">
+            <div class="card-body">
 
-                    <div class="card-body">
+                <!-- Title -->
+                <h1 class="card-title font-weight-bold">
+                    {{$recipe->name}}
+                </h1>
 
-                        <!-- Title -->
-                        <h4 class="card-title">
-                            {{$recipe->name}}
-                        </h4>
+                <!-- Author -->
+                <h5 class="card-subtitle text-muted">
+                    By {{$recipe->author->name}}
+                </h5>
 
-                        <!-- Author -->
-                        <h5 class="card-subtitle mb-2 text-muted">
-                            By {{$recipe->author->name}}
-                        </h5>
-
-                        <h5>Description</h5>
-                        <p class="card-text">
-                            {{$recipe->description}}
-                        </p>
-
-                        <h5>Ingredients</h5>
-                        <ul class="list-group">
-                            @forelse($recipe->ingredients as $ingredient)
-                                <li class="list-group-item">{{$ingredient->pivot->quantity . 'x ' . $ingredient->name}}</li>
-
-                            @empty
-                                <p class="text-muted">No ingredients available.</p>
-
-                            @endforelse
-                        </ul>
-
-                        <h5>Instructions</h5>
-                        <p class="card-text">
-                            {{$recipe->instructions }}
-                        </p>
-
-                        <div>
-                            @include('recipes.partials.edit-actions')
-                        </div>
-
-                    </div>
-
+                <div class="w-100 my-4"
+                     style="height: 30vh; background-image: url('https://via.placeholder.com/150'); background-repeat: no-repeat; background-position: center; background-size: cover">
                 </div>
+
+                <h4 class="font-weight-bold">Description</h4>
+                <p class="card-text">
+                    {!! nl2br(e($recipe->description)) !!}
+                </p>
+
+                <h4 class="font-weight-bold">Ingredients</h4>
+                <ul class="list-unstyled mb-4">
+
+                    @forelse($recipe->ingredients as $ingredient)
+
+                        <li>{{$ingredient->pivot->quantity . " " . $ingredient->name}}</li>
+
+                    @empty
+                        <p class="text-muted">No ingredients available.</p>
+
+                    @endforelse
+                </ul>
+
+                <h4 class="font-weight-bold">Directions</h4>
+                <p class="card-text">
+                    {!! nl2br(e($recipe->instructions)) !!}
+                </p>
+
+                <div>
+                    @include('recipes.partials.edit-actions')
+                </div>
+
             </div>
+
         </div>
     </div>
 @endsection
