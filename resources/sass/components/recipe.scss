@@ -1,0 +1,11 @@
+.recipe-img {
+    width: 100%;
+    //border-top-right-radius: 0;
+    //border-bottom-left-radius: calc(0.25rem - 1px);
+}
+
+@include media-breakpoint-up(md) {
+    .recipe-img {
+        max-width: 30%;
+    }
+}

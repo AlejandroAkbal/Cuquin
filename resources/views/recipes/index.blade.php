@@ -2,71 +2,65 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
 
-                @include('shared.messages')
+        <h1>Recipes</h1>
 
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        Recipes
+        <hr>
 
-                        <a href="{{ route('recipes.create') }}"
-                           class="btn btn-primary">
-                            Create
-                        </a>
-                    </div>
+        <form id="sort-form" action="" class="form-inline mt-1 mb-3">
+            <div class="form-group">
+                <label for="sort" class="mr-2">Sort By</label>
+
+                <select name="sort" id="sort" class="form-control form-control-sm"
+                        onchange="document.getElementById('sort-form').submit()">
+
+                    <option value="latest">Latest</option>
+                    <option value="creation">Creation</option>
+
+                </select>
+            </div>
+        </form>
+
+        @include('shared.messages')
+
+        <ul class="list-unstyled space-y-6">
+
+            @forelse($recipes as $recipe)
+
+                <li class="card flex-column flex-md-row">
+
+                    <img src="https://via.placeholder.com/150"
+                         class="card-img-top recipe-img" alt="Recipe image"/>
 
                     <div class="card-body">
+                        <h5 class="card-title font-weight-bold">{{$recipe->name}}</h5>
 
-                        <ul class="list-unstyled">
-                            @forelse($recipes as $recipe)
-                                <li class="my-2">
+                        <p class="card-text">{{Str::limit($recipe->description, 150)}}</p>
 
-                                    <div class="card">
-                                        <div class="card-body">
+                        <!-- actions -->
+                        <div>
+                            <a href="{{ route('recipes.show', $recipe) }}"
+                               class="btn btn-primary">
+                                Read
+                            </a>
 
-                                            <!-- Title -->
-                                            <h5 class="card-title">
-                                                {{$recipe->name}}
-                                            </h5>
-
-                                            <!-- Content -->
-                                            <p class="card-text">
-                                                {{Str::limit($recipe->description, 150)}}
-                                            </p>
-
-                                            <!-- actions -->
-                                            <div>
-                                                <a href="{{ route('recipes.show', $recipe) }}"
-                                                   class="btn btn-primary">
-                                                    Read
-                                                </a>
-
-                                                @include('recipes.partials.edit-actions')
-                                            </div>
-
-                                        </div>
-
-                                        {{--                                        {{$recipe}}--}}
-
-                                    </div>
-
-                                </li>
-
-                            @empty
-                                <li class="my-2">There are no recipes. Create one?</li>
-                            @endforelse
-
-                        </ul>
-
-                        <!-- Pagination -->
-                        <div class="d-flex justify-content-center">
-                            {{$recipes->links()}}
+                            @include('recipes.partials.edit-actions')
                         </div>
                     </div>
-                </div>
-            </div>
+
+
+                </li>
+
+            @empty
+                <li class="my-4">There are no recipes. You should create one!</li>
+            @endforelse
+
+        </ul>
+
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center">
+            {{$recipes->links()}}
         </div>
     </div>
 @endsection
