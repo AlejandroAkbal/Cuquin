@@ -29,7 +29,7 @@
 
         @include('shared.messages')
 
-        <ul class="list-unstyled space-y-6">
+        <ul class="list-unstyled space-y-4">
 
             @forelse($recipes as $recipe)
 
