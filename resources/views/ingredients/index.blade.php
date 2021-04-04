@@ -2,71 +2,55 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
 
-                @include('shared.messages')
+        <h1>Ingredients</h1>
 
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        Ingredients
+        <hr>
 
-                        <a href="{{ route('ingredients.create') }}"
+
+        <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+
+            <div class="form-group"></div>
+
+            <a href="{{ route('ingredients.create') }}"
+               class="btn btn-primary">
+                Create
+            </a>
+
+        </div>
+
+        @include('shared.messages')
+
+
+        <ul class="list-unstyled space-y-4">
+
+            @forelse($ingredients as $ingredient)
+
+                <x-content-card
+                    title="{{$ingredient->name}}"
+                    text="Used in {{$ingredient->recipes->count()}} recipes."
+                >
+                    <!-- actions -->
+                    <div>
+                        <a href="{{ route('ingredients.show', $ingredient) }}"
                            class="btn btn-primary">
-                            Create
+                            View
                         </a>
+
+                        @include('ingredients.partials.edit-actions')
                     </div>
 
-                    <div class="card-body">
+                </x-content-card>
 
-                        <ul class="list-unstyled">
-                            @forelse($ingredients as $ingredient)
-                                <li class="my-2">
+            @empty
+                <li class="my-4">There are no ingredients. You should create one!</li>
+            @endforelse
 
-                                    <div class="card">
-                                        <div class="card-body">
+        </ul>
 
-                                            <!-- Title -->
-                                            <h5 class="card-title">
-                                                {{$ingredient->name}}
-                                            </h5>
-
-                                            <!-- Content -->
-                                            <p class="card-subtitle text-muted">
-                                                Used in {{$ingredient->recipes->count()}} recipes.
-                                            </p>
-
-                                            <!-- actions -->
-                                            <div>
-                                                <a href="{{ route('ingredients.show', $ingredient) }}"
-                                                   class="btn btn-primary">
-                                                    View
-                                                </a>
-
-                                                @include('ingredients.partials.edit-actions')
-                                            </div>
-
-                                        </div>
-
-                                        {{--                                        {{$ingredient}}--}}
-
-                                    </div>
-
-                                </li>
-
-                            @empty
-                                <li class="my-2">There are no ingredients. Create one?</li>
-                            @endforelse
-
-                        </ul>
-
-                        <!-- Pagination -->
-                        <div class="d-flex justify-content-center">
-                            {{$ingredients->links()}}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center">
+            {{$ingredients->links()}}
         </div>
     </div>
 @endsection

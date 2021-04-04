@@ -33,29 +33,22 @@
 
             @forelse($recipes as $recipe)
 
-                <li class="card flex-column flex-md-row">
+                <x-content-card
+                    title="{{$recipe->name}}"
+                    text="{{Str::limit($recipe->description, 150)}}"
+                    img="https://via.placeholder.com/150"
+                >
+                    <!-- actions -->
+                    <div>
+                        <a href="{{ route('recipes.show', $recipe) }}"
+                           class="btn btn-primary">
+                            Read
+                        </a>
 
-                    <img src="https://via.placeholder.com/150"
-                         class="card-img-top recipe-img" alt="Recipe image"/>
-
-                    <div class="card-body">
-                        <h5 class="card-title font-weight-bold">{{$recipe->name}}</h5>
-
-                        <p class="card-text">{{Str::limit($recipe->description, 150)}}</p>
-
-                        <!-- actions -->
-                        <div>
-                            <a href="{{ route('recipes.show', $recipe) }}"
-                               class="btn btn-primary">
-                                Read
-                            </a>
-
-                            @include('recipes.partials.edit-actions')
-                        </div>
+                        @include('recipes.partials.edit-actions')
                     </div>
 
-
-                </li>
+                </x-content-card>
 
             @empty
                 <li class="my-4">There are no recipes. You should create one!</li>
