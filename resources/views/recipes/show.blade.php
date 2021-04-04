@@ -39,7 +39,7 @@
                     @endforelse
                 </ul>
 
-                <h4 class="font-weight-bold">Directions</h4>
+                <h4 class="font-weight-bold">Instructions</h4>
                 <p class="card-text">
                     {!! nl2br(e($recipe->instructions)) !!}
                 </p>
