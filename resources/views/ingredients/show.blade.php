@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+
+@section('title', $ingredient->name . ' ingredient')
+
 @section('content')
     <div class="container">
 

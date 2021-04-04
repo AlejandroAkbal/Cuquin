@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', ($isEditing ? 'Edit' : 'Create') . ' ingredient')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -19,7 +21,7 @@
 
                 <div class="card">
 
-                    <div class="card-header">{{$isEditing ? 'Update' : 'Create'}} ingredient</div>
+                    <div class="card-header">{{$isEditing ? 'Edit' : 'Create'}} ingredient</div>
 
                     <div class="card-body">
 
@@ -39,7 +41,7 @@
                             </div>
 
                             <button type="submit"
-                                    class="btn btn-primary">{{$isEditing ? 'Update' : 'Create'}}</button>
+                                    class="btn btn-primary">{{$isEditing ? 'Edit' : 'Create'}}</button>
 
                         </form>
                     </div>
