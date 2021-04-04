@@ -7,19 +7,25 @@
 
         <hr>
 
-        <form id="sort-form" action="" class="form-inline mt-1 mb-3">
-            <div class="form-group">
-                <label for="sort" class="mr-2">Sort By</label>
+        <div class="d-flex flex-row justify-content-between align-items-center mb-3">
 
-                <select name="sort" id="sort" class="form-control form-control-sm"
-                        onchange="document.getElementById('sort-form').submit()">
+            <form id="sort-form" action="" class="form-inline">
+                <div class="form-group">
+                    <label for="sort" class="mr-2">Sort By</label>
 
-                    <option value="latest">Latest</option>
-                    <option value="creation">Creation</option>
+                    <select name="sort" id="sort" class="form-control form-control-sm"
+                            onchange="document.getElementById('sort-form').submit()">
 
-                </select>
-            </div>
-        </form>
+                        <option value="latest">Latest</option>
+                        <option value="creation">Creation</option>
+
+                    </select>
+                </div>
+            </form>
+
+            <a class="btn btn-primary" href="{{ route('recipes.create') }}">Create</a>
+
+        </div>
 
         @include('shared.messages')
 
