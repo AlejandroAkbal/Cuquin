@@ -3,7 +3,7 @@
     @if ($attributes->has('img'))
 
         <img src="{{$img}}"
-             class="card-img-top recipe-img" alt="Image"/>
+             class="card-img-top recipe-img" style="object-fit: cover" alt="Image"/>
 
     @endif
 
