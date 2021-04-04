@@ -17,6 +17,7 @@
                     By {{$recipe->author->name}}
                 </h5>
 
+                <!-- Image -->
                 <div class="w-100 my-4"
                      style="height: 30vh; background-image: url('https://via.placeholder.com/150'); background-repeat: no-repeat; background-position: center; background-size: cover">
                 </div>

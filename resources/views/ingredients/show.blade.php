@@ -2,36 +2,33 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
 
-                <div class="card">
-                    <div class="card-header">View ingredient</div>
+        <div class="card">
 
-                    <div class="card-body">
+            <div class="card-body">
 
-                        <!-- Title -->
-                        <h4 class="card-title">
-                            {{$ingredient->name}}
-                        </h4>
+                <!-- Title -->
+                <h1 class="card-title font-weight-bold">
+                    {{$ingredient->name}}
+                </h1>
 
-                        <!-- Author -->
-                        <h5 class="card-subtitle mb-2 text-muted">
-                            By {{$ingredient->creator->name}}
-                        </h5>
+                <!-- Author -->
+                <h5 class="card-subtitle text-muted">
+                    By {{$ingredient->creator->name}}
+                </h5>
 
-                        <p class="card-text">
-                            Used in {{$ingredient->recipes->count()}} recipes.
-                        </p>
+                <hr/>
 
-                        <div>
-                            @include('ingredients.partials.edit-actions')
-                        </div>
+                <p class="card-text">
+                    Used in {{$ingredient->recipes->count()}} recipes.
+                </p>
 
-                    </div>
-
+                <div>
+                    @include('ingredients.partials.edit-actions')
                 </div>
+
             </div>
+
         </div>
     </div>
 @endsection
