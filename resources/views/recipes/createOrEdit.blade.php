@@ -41,6 +41,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="image">Image URL</label>
+                                <input type="text" class="form-control" id="image" name="image"
+                                       placeholder="https://via.placeholder.com/640x480.png/CCCCCC"
+                                       value="{{old('image', $recipe->image ?? null)}}"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea class="form-control" id="description" name="description" rows="3"
                                           required>{{old('description', $recipe->description ?? null)}}</textarea>

@@ -59,6 +59,7 @@ class RecipesController extends Controller
     {
         $request->validate([
             'name' => ['required', 'unique:App\Models\Recipe'],
+            'image' => ['required', 'max:150', 'url'],
             'description' => ['required', 'min:50', 'max:255'],
             'instructions' => ['required', 'min:100', 'max:510'],
             'ingredients' => ['required'],
@@ -113,6 +114,7 @@ class RecipesController extends Controller
     {
         $request->validate([
             'name' => ['required'],
+            'image' => ['required', 'max:150', 'url'],
             'description' => ['required', 'min:50', 'max:255'],
             'instructions' => ['required', 'min:100', 'max:510'],
             'ingredients' => ['required'],
