@@ -24,11 +24,6 @@ class Recipe extends Model
         'user_id',
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
-
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
