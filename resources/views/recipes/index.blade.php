@@ -38,7 +38,7 @@
                 <x-content-card
                     title="{{$recipe->name}}"
                     text="{{Str::limit($recipe->description, 150)}}"
-                    img="https://via.placeholder.com/150"
+                    img="{{$recipe->image}}"
                 >
                     <!-- actions -->
                     <div>
