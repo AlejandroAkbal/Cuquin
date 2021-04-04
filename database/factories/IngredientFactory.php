@@ -25,7 +25,7 @@ class IngredientFactory extends Factory
         return [
             'user_id' => User::all()->random()->id,
 
-            'name' => $this->faker->unique()->word
+            'name' => $this->faker->unique()->vegetableName()
         ];
     }
 }
