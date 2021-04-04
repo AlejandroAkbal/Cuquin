@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Illuminate\Validation\Rule;
 
 class RecipesController extends Controller
 {
@@ -22,13 +23,18 @@ class RecipesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $recipes = Recipe::orderBy('id', 'DESC')->paginate(5);
+        $request->validate(['sortBy' => [Rule::in(['created_at', 'updated_at'])]]);
+        $sortBy = $request->input('sortBy') ?? 'updated_at';
 
-        return View::make('recipes.index', ['recipes' => $recipes]);
+        $recipes = Recipe::latest($sortBy)->paginate(5);
+        $recipes->appends(['sortBy' => $sortBy]);
+
+        return View::make('recipes.index', ['recipes' => $recipes, 'sortBy' => $sortBy]);
     }
 
     /**

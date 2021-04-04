@@ -9,15 +9,15 @@
 
         <div class="d-flex flex-row justify-content-between align-items-center mb-3">
 
-            <form id="sort-form" action="" class="form-inline">
+            <form id="sort-form" class="form-inline">
                 <div class="form-group">
-                    <label for="sort" class="mr-2">Sort By</label>
+                    <label for="sortBy" class="mr-2">Sort By</label>
 
-                    <select name="sort" id="sort" class="form-control form-control-sm"
+                    <select name="sortBy" id="sortBy" class="form-control form-control-sm"
                             onchange="document.getElementById('sort-form').submit()">
 
-                        <option value="latest">Latest</option>
-                        <option value="creation">Creation</option>
+                        <option value="updated_at" {{$sortBy === 'updated_at' ? 'selected' : ''}}>Updated</option>
+                        <option value="created_at" {{$sortBy === 'created_at' ? 'selected' : ''}}>Created</option>
 
                     </select>
                 </div>
