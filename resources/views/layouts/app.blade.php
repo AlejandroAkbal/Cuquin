@@ -40,8 +40,8 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item {{Request::routeIs('home') ? 'active' : ''}}">
-                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                <li class="nav-item {{Request::routeIs('index') ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
 
                 <li class="nav-item {{Request::routeIs('recipes.*') ? 'active' : ''}}">

@@ -17,10 +17,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return Redirect::to('home');
-});
-
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    return view('index');
+})->name('index');
 
 Route::resource('recipes', \App\Http\Controllers\RecipesController::class);
 Route::resource('ingredients', \App\Http\Controllers\IngredientController::class);
