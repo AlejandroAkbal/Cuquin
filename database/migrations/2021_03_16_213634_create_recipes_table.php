@@ -20,9 +20,8 @@ class CreateRecipesTable extends Migration
             $table->unsignedBigInteger('user_id');
 
             // Values
-            //TODO: recipe image URL
-            //TODO: change "instructions" to "directions"
             $table->string('name')->unique();
+            $table->string('image');
             $table->text('description');
             $table->text('instructions');
 

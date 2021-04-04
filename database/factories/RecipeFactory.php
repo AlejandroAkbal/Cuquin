@@ -22,10 +22,13 @@ class RecipeFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->unique()->foodName();
+
         return [
             'user_id' => User::all()->random()->id,
 
-            'name' => $this->faker->unique()->foodName(),
+            'name' => $name,
+            'image' => $this->faker->imageUrl(640, 480, null, false, $name, true),
             'description' => $this->faker->text,
             'instructions' => $this->faker->text,
         ];
