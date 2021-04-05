@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('index');
+    $recipes = \App\Models\Recipe::latest('created_at')->limit(3)->get();
+
+    return view('index', ['recipes' => $recipes]);
+
 })->name('index');
 
 Route::resource('recipes', \App\Http\Controllers\RecipesController::class);
