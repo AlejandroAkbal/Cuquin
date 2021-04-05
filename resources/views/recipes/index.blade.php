@@ -53,7 +53,7 @@
                 </x-content-card>
 
             @empty
-                <li class="my-4">There are no recipes. You should create one!</li>
+                <li class="my-4">There are no recipes. You should create some!</li>
             @endforelse
 
         </ul>
