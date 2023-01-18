@@ -1,5 +1,9 @@
 # Cuquin
 
+Simple recipe website for https://ilerna.es
+
+This was my TFG
+
 ## Set up
 
 ```shell
